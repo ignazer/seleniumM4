@@ -91,11 +91,13 @@ XML: Integrable con herramientas como Jenkins.
 
 ---
 
-###📦 **Best Practices**
-✅	Principle	Implementation
-✅	Configuración reusable	Fixtures de pytest (driver)
-✅	Aislamiento	Cada test inicia una nueva sesión
-✅	Reportes automáticos	Artefactos guardados por 30 días
+## 📦 Mejores Prácticas
+
+| ✅ | Principio               | Implementación                          |
+|---|--------------------------|-----------------------------------------|
+| ✅ | Configuración reusable   | Fixtures de pytest (`driver`)           |
+| ✅ | Aislamiento              | Cada test inicia una nueva sesión       |
+| ✅ | Reportes automáticos     | Artefactos guardados por 30 días        |
 
 ---
 
