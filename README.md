@@ -1,96 +1,72 @@
-🔧 Selenium Web Testing + GitHub Actions  
-Python | Selenium | Pytest | CI  
+🚀 Pruebas Automatizadas con Selenium + GitHub Actions
+Tecnologías: 🐍 Python 3.12 | 🖥️ Selenium WebDriver | 🧪 Pytest | 🔄 GitHub Actions
 
----
+📋 Descripción
+Solución de pruebas web automatizadas usando Selenium WebDriver con Python, integrada con GitHub Actions para ejecución continua en cada push o pull request.
 
-### 📋 **Description**  
-Automatización de pruebas web con Selenium y pytest, integrada en GitHub Actions para ejecutar tests en cada `push` o `pull request`.  
+Objetivos:
+✅ Validar comportamiento de páginas web
+📊 Generar reportes HTML/XML automáticos
+🔁 Ejecutar pruebas en CI/CD
 
-**🎯 Main Objective**:  
-Validar el comportamiento de una página web (ej: GitHub) bajo condiciones controladas, asegurando que los elementos clave funcionen como se espera.  
+🛠 Configuración Rápida
+Clonar repositorio:
 
----
-
-### 🛠️ **Tech Stack**  
-| Tool                | Purpose                                  |  
-|---------------------|------------------------------------------|  
-| 🐍 Python 3.12      | Lenguaje base para las pruebas           |  
-| 🖥️ Selenium WebDriver | Automatización del navegador (Chrome)   |  
-| 🧪 Pytest           | Framework de testing y reportes HTML/XML |  
-| 🔄 GitHub Actions   | CI/CD para ejecución automática          |  
-
----
-
-### 📁 **Project Structure**  
-
-project-root/  
-│  
-├── 📂 tests/  
-│   └── first_test.py           # Test de Selenium (ej: verifica título de GitHub)  
-│  
-├── 📂 .github/workflows/  
-│   └── pytest.yml              # Workflow de GitHub Actions  
-│  
-├── requirements.txt            # Dependencias (pytest, selenium, pytest-html)  
-└── README.md                  # Este archivo
----
-🧪 How to Run Tests
-🖥️ Localmente (con Chrome instalado):
 bash
-# Instalar dependencias
+git clone https://github.com/tu-usuario/repo.git && cd repo
+Instalar dependencias:
+
+bash
 pip install -r requirements.txt
+Ejecutar pruebas localmente:
 
-# Ejecutar tests
+bash
 pytest tests/ --html=report.html --self-contained-html
----
-🔁 Via GitHub Actions
-Cada push o PR dispara el workflow que:
+⚙️ GitHub Actions Workflow
+El pipeline automático incluye:
 
-⚙️ Configura Python 3.12 y Chrome.
-
-🐍 Instala dependencias (pytest, selenium).
-
-🚀 Ejecuta los tests en modo headless.
-
-📦 Sube reportes (HTML + XML) como artefactos.
----
-🔄 GitHub Actions Workflow
 yaml
-name: Run Pytest  
-on: [push]  
-jobs:  
-  test:  
-    runs-on: ubuntu-latest  
-    steps:  
-      - uses: actions/checkout@v4  
-      - uses: actions/setup-python@v4  
-      - uses: browser-actions/setup-chrome@latest  
-      - run: pip install -r requirements.txt  
-      - run: pytest --html=report.html --junitxml=results.xml  
-      - uses: actions/upload-artifact@v4  
-        with:  
-          name: test-reports  
-          path: |  
-            report.html  
+name: Run Pytest
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+      - uses: browser-actions/setup-chrome@latest
+      - run: pip install -r requirements.txt
+      - run: pytest --html=report.html --junitxml=results.xml
+      - uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            report.html
             results.xml
----
-⚠️ Important Notes
-ChromeDriver: Se instala automáticamente via selenium-manager (no requiere ruta hardcodeada).
+📂 Estructura del Proyecto
+text
+.
+├── tests/
+│   └── test_github.py          # Prueba ejemplo (verifica título de GitHub)
+├── .github/
+│   └── workflows/
+│       └── pytest.yml          # Configuración de CI
+└── requirements.txt            # Dependencias (pytest, selenium, pytest-html)
+📌 Mejores Prácticas
+Usa fixtures de pytest para gestionar el navegador
 
-Modo Headless: Essential para CI (sin interfaz gráfica).
+Implementa el Patrón Page Object Model
 
-Reportes:
+Genera reportes con pytest-html
 
-HTML: Visualiza resultados en report.html.
+Ejecuta en modo headless para CI
 
-XML: Integrable con herramientas como Jenkins.
----
-📦 Best Practices
-✅	Principle	Implementation
-✅	Configuración reusable	Fixtures de pytest (driver)
-✅	Aislamiento	Cada test inicia una nueva sesión
-✅	Reportes automáticos	Artefactos guardados por 30 días
----
-📜 License
-Educational project - Part of DevOps/QA training.
----
+📜 Licencia
+Proyecto educativo - Parte de formación en QA Automation.
+
+✉️ Contacto: tu-email@ejemplo.com
+🔗 Repositorio: github.com/tu-usuario/repo
+
+https://selenium.dev/images/selenium_logo_square_green.png
