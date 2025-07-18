@@ -22,7 +22,7 @@ Validar el comportamiento de una página web (ej: GitHub) bajo condiciones contr
 ---
 
 ### 📁 **Project Structure**  
-```plaintext
+
 project-root/  
 │  
 ├── 📂 tests/  
@@ -33,7 +33,7 @@ project-root/
 │  
 ├── requirements.txt            # Dependencias (pytest, selenium, pytest-html)  
 └── README.md                  # Este archivo
-
+---
 🧪 How to Run Tests
 🖥️ Localmente (con Chrome instalado):
 bash
@@ -42,7 +42,7 @@ pip install -r requirements.txt
 
 # Ejecutar tests
 pytest tests/ --html=report.html --self-contained-html
-
+---
 🔁 Via GitHub Actions
 Cada push o PR dispara el workflow que:
 
@@ -53,7 +53,7 @@ Cada push o PR dispara el workflow que:
 🚀 Ejecuta los tests en modo headless.
 
 📦 Sube reportes (HTML + XML) como artefactos.
-
+---
 🔄 GitHub Actions Workflow
 yaml
 name: Run Pytest  
@@ -73,7 +73,7 @@ jobs:
           path: |  
             report.html  
             results.xml
-
+---
 ⚠️ Important Notes
 ChromeDriver: Se instala automáticamente via selenium-manager (no requiere ruta hardcodeada).
 
@@ -84,6 +84,13 @@ Reportes:
 HTML: Visualiza resultados en report.html.
 
 XML: Integrable con herramientas como Jenkins.
-
+---
+📦 Best Practices
+✅	Principle	Implementation
+✅	Configuración reusable	Fixtures de pytest (driver)
+✅	Aislamiento	Cada test inicia una nueva sesión
+✅	Reportes automáticos	Artefactos guardados por 30 días
+---
 📜 License
 Educational project - Part of DevOps/QA training.
+---
