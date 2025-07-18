@@ -1,0 +1,30 @@
+name: Run Python Tests with Pytest  # Nombre descriptivo del workflow
+on: [push]                        # Se ejecuta en cada push al repo
+
+jobs:
+  test:
+    runs-on: ubuntu-latest         # Sistema operativo
+    steps:
+      - name: Checkout code        # Descarga el código
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12   # Configura Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies # Instala dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Pytest           # Ejecuta pruebas
+        run: |
+          pytest --maxfail=1 --disable-warnings -q --junitxml=test-results.xml
+
+      - name: Upload test results  # Sube reporte de resultados
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pytest-results
+          path: test-results.xml
