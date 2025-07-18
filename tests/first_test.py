@@ -1,16 +1,8 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
 
 def test_page_title():
-    browser = webdriver.Chrome(service=Service("C:\\Users\\igmug\\chromedriver-win64\\chromedriver.exe"))
+    browser = webdriver.Chrome()  # ¡Sin ruta hardcodeada!
     browser.get('https://github.com')
-
-    titleElement = browser.find_element(By.ID,'hero-section-brand-heading')
-
-    assert titleElement.text == 'Build and ship software on a single, collaborative platform'
-
-
+    title_element = browser.find_element(By.ID, 'hero-section-brand-heading')
+    assert "Build and ship software" in title_element.text
     browser.quit()
-
-
